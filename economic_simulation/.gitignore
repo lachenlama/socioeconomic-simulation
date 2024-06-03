@@ -1,0 +1,33 @@
+
+### 2. `.gitignore`
+
+A `.gitignore` file specifies the files and directories that should be ignored by Git. Here is a basic `.gitignore` for your project:
+
+```gitignore
+# Python
+*.pyc
+__pycache__/
+
+# Environment variables
+.env
+
+# Virtual environments
+.venv/
+.env/
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Misc
+*.swp
