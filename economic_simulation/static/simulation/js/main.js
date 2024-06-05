@@ -106,6 +106,11 @@ function updateAllSliderValues() {
 }
 
 function displayCharacters(characters_emotions) {
+
+    const afterDiv = document.getElementById('after');
+
+    afterDiv.style.display = 'block';
+
     const charactersDiv = document.getElementById('characters');
     charactersDiv.innerHTML = '';
 
@@ -212,3 +217,27 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const characters = document.querySelectorAll('.character');
+
+    characters.forEach(character => {
+        const happinessText = character.querySelector('p:nth-of-type(4)').innerText;
+        const happinessValue = parseInt(happinessText.replace('Happiness: ', ''), 10);
+        const happinessBar = document.createElement('div');
+        happinessBar.classList.add('happiness-bar');
+        happinessBar.style.width = `${happinessValue}%`;
+
+        if (happinessValue >= 60) {
+            happinessBar.classList.add('happy');
+        } else if (happinessValue >= 40) {
+            happinessBar.classList.add('neutral');
+        } else {
+            happinessBar.classList.add('unhappy');
+        }
+
+        character.insertBefore(happinessBar, character.querySelector('img'));
+    });
+});

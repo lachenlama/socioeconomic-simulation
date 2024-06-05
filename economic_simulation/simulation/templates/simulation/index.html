@@ -8,115 +8,54 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
         const characterImages = {
-            "doom": "{% static 'simulation/images/doom.png' %}",
-            "jim": "{% static 'simulation/images/jim.png' %}",
-            "natasha": "{% static 'simulation/images/natasha.png' %}",
-            "lara": "{% static 'simulation/images/lara.png' %}",
-            "han": "{% static 'simulation/images/han.png' %}"
+            "doom": "{% static 'simulation/images/Doom.png' %}",
+            "jim": "{% static 'simulation/images/Jim.png' %}",
+            "natasha": "{% static 'simulation/images/Natasha.png' %}",
+            "lara": "{% static 'simulation/images/Lara.png' %}",
+            "han": "{% static 'simulation/images/Han.png' %}"
         };
     </script>
     <script src="{% static 'simulation/js/main.js' %}"></script>
-    <style>
-        .character-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .character {
-            text-align: center;
-            width: 100px;
-            position: relative;
-        }
-        .character img {
-            width: 100px;
-            height: 100px;
-        }
-        .character .score {
-            font-size: 1.2em;
-            margin-bottom: 5px;
-        }
-        .character .name {
-            display: block;
-            margin-top: 5px;
-        }
-        .happy {
-            background-color: green;
-            color: white;
-        }
-        .neutral {
-            background-color: yellow;
-            color: black;
-        }
-        .sad {
-            background-color: red;
-            color: white;
-        }
-        #events {
-            margin-top: 20px;
-        }
-        .event {
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .profile {
-            display: none;
-            position: absolute;
-            top: 120px;
-            left: 0;
-            width: 150px;
-            padding: 10px;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            z-index: 10;
-        }
-        .profile h3 {
-            margin: 0;
-        }
-        .profile p {
-            margin: 5px 0;
-        }
-    </style>
+   
 </head>
 <body>
+    <div class="hero">
     <h1>Economic Impact of Fiat Currency Policies</h1>
     
     <div>
-        <button onclick="setScenario('recession')">Recession</button>
-        <button onclick="setScenario('boom')">Economic Boom</button>
-        <button onclick="setScenario('custom')">Custom Scenario</button>
+        <button class="hero-btn" onclick="setScenario('recession')">Recession</button>
+        <button class="hero-btn" onclick="setScenario('boom')">Economic Boom</button>
+        <button class="hero-btn" onclick="setScenario('custom')">Custom Scenario</button>
     </div>
-
+</div>
     <form id="policy-form">
         <div class="slider-container">
-            <label for="interest_rate">Interest Rate Change (%): <span id="interest_rate_value">5</span>%</label>
+            <label for="interest_rate">Interest Rate Change (%) : <span id="interest_rate_value">5</span>%</label>
             <input type="range" id="interest_rate" name="interest_rate" min="-5" max="5" step="0.1" value="5" class="slider" oninput="updateSliderValue('interest_rate')">
         </div>
 
         <div class="slider-container">
-            <label for="fiscal_stimulus">Fiscal Stimulus (% of GDP): <span id="fiscal_stimulus_value">0</span>%</label>
+            <label for="fiscal_stimulus">Fiscal Stimulus (% of GDP) : <span id="fiscal_stimulus_value">0</span>%</label>
             <input type="range" id="fiscal_stimulus" name="fiscal_stimulus" min="0" max="10" step="0.1" value="0" class="slider" oninput="updateSliderValue('fiscal_stimulus')">
         </div>
 
         <div class="slider-container">
-            <label for="quantitative_easing">Quantitative Easing (% of GDP): <span id="quantitative_easing_value">0</span>%</label>
+            <label for="quantitative_easing">Quantitative Easing (% of GDP) : <span id="quantitative_easing_value">0</span>%</label>
             <input type="range" id="quantitative_easing" name="quantitative_easing" min="0" max="10" step="0.1" value="0" class="slider" oninput="updateSliderValue('quantitative_easing')">
         </div>
 
         <div class="slider-container">
-            <label for="tax_rate">Tax Rate (%): <span id="tax_rate_value">20</span>%</label>
+            <label for="tax_rate">Tax Rate (%) : <span id="tax_rate_value">20</span>%</label>
             <input type="range" id="tax_rate" name="tax_rate" min="0" max="50" step="1" value="20" class="slider" oninput="updateSliderValue('tax_rate')">
         </div>
 
         <div class="slider-container">
-            <label for="gov_spending">Government Spending (% of GDP): <span id="gov_spending_value">5</span>%</label>
+            <label for="gov_spending">Government Spending (% of GDP) : <span id="gov_spending_value">5</span>%</label>
             <input type="range" id="gov_spending" name="gov_spending" min="0" max="20" step="0.1" value="5" class="slider" oninput="updateSliderValue('gov_spending')">
         </div>
 
         <div class="slider-container">
-            <label for="min_wage">Minimum Wage ($ per hour): <span id="min_wage_value">15</span>$</label>
+            <label for="min_wage">Minimum Wage ($ per hour) : <span id="min_wage_value">15</span>$</label>
             <input type="range" id="min_wage" name="min_wage" min="7.25" max="20" step="0.25" value="15" class="slider" oninput="updateSliderValue('min_wage')">
         </div>
 
@@ -127,7 +66,7 @@
         
         <button type="button" onclick="runSimulation()">Run Simulation</button>
     </form>
-    
+    <div id="after">
     <div id="results"></div>
     <div id="characters"></div>
     <div id="events"></div>
@@ -140,8 +79,8 @@
     <div id="savings-rate-chart"></div>
     <div id="real-wages-chart"></div>
     <div id="inflation-adjusted-savings-chart"></div>
-    <div id="household-income-chart"></div>
+    <!-- <div id="household-income-chart"></div>
     <div id="household-savings-chart"></div>
-    <div id="household-debt-chart"></div>
+    <div id="household-debt-chart"></div> -->
+</div>
 </body>
-</html>

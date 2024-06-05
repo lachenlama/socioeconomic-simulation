@@ -1,48 +1,180 @@
+/* General styling for the body */
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
-h1, h2 {
-    color: #333;
-}
-
-form {
-    margin-bottom: 20px;
-}
-
-label {
-    display: inline-block;
-    width: 200px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-input {
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
+/* Styling for the hero section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* This keeps the heading above the buttons */
+    text-align: center;
+    background: linear-gradient(to right, #4e54c8, #8f94fb);
+    padding: 50px 20px;
     color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin: 0 0 20px;
+}
+
+/* Styling for the buttons */
+.hero-btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+}
+
+.hero-btn {
+    margin-top: 20px;
+    background: #8f94fb;
     border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
 }
 
-button:hover {
-    background-color: #45a049;
+.hero-btn:hover {
+    background: #4e54c8;
 }
 
-#results {
+.eco-btn {
+    background: #8f94fb;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.eco-btn:hover {
+    background: #4e54c8;
+}
+
+/* Styling for the form */
+#policy-form {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the form content */
+}
+
+/* Styling for slider containers */
+.slider-container {
+    margin: 20px 0;
+    width: 100%;
+}
+
+.slider-container label {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.slider {
+    width: 100%;
+}
+
+/* Styling for the simulation button */
+#policy-form button {
+    background: #4e54c8;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+#policy-form button:hover {
+    background: #8f94fb;
+}
+
+/* Styling for the results and charts */
+#results, #characters, #events, #gdp-chart, #inflation-chart, #interest-chart, #unemployment-chart, #total-debt-chart, #debt-to-gdp-chart, #savings-rate-chart, #real-wages-chart, #inflation-adjusted-savings-chart, #household-income-chart, #household-savings-chart, #household-debt-chart {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+/* Chat-like styling for real-time events */
+#events {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#events div {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#events div:before {
+    content: attr(class) ": ";
+    font-weight: bold;
+}
+
+#events div.doom {
+    background-color: #f8d7da;
+    color: #721c24;
+    text-align: left;
+}
+
+#events div.han {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    text-align: left;
+}
+
+#events div.lara {
+    background-color: #d4edda;
+    color: #155724;
+    text-align: left;
+}
+
+#events div.natasha {
+    background-color: #fff3cd;
+    color: #856404;
+    text-align: left;
+}
+  /* Characters container */
+ 
+  #results {
     margin-bottom: 20px;
 }
 
 .character-container {
     display: flex;
+    justify-content: space-around;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px; 
+   
 }
 
 .character {
@@ -63,4 +195,69 @@ button:hover {
 .character .name {
     display: block;
     margin-top: 5px;
+}
+.character-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.character {
+    text-align: center;
+    width: 100px;
+    position: relative;
+}
+.character img {
+    width: 100px;
+    height: 100px;
+}
+.character .score {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+.character .name {
+    display: block;
+    margin-top: 5px;
+}
+.happy {
+    background-color: green;
+    color: white;
+}
+.neutral {
+    background-color: yellow;
+    color: black;
+}
+.sad {
+    background-color: red;
+    color: white;
+}
+#events {
+    margin-top: 20px;
+}
+.event {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.profile {
+    display: none;
+    position: absolute;
+    top: 120px;
+    left: 0;
+    width: 150px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 10;
+}
+.profile h3 {
+    margin: 0;
+}
+.profile p {
+    margin: 5px 0;
+}
+
+#after{
+    display: none;
 }
