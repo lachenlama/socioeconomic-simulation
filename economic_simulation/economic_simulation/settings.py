@@ -25,7 +25,11 @@ SECRET_KEY = "django-insecure-9=d-jm^afu!8g1u2!qab5qoimk53va)$%ju+f&(k)$dsxf$)^(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+if DEBUG == False:
+    ALLOWED_HOSTS = []
+else:
+    ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -74,14 +78,24 @@ WSGI_APPLICATION = "economic_simulation.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# if DEBUG == True:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+# }
+# else:   
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'economic_sumulation',
+        'USER': 'nitensapkota',
+        'PASSWORD': 'nitensapkota175',
+        'HOST':  'localhost',
+        'PORT': '5432'
     }
-}
-
-
+    }
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
