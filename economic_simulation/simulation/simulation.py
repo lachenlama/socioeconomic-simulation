@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from .characters import create_characters, Character
+from . models import Character,Simulation
 
 # Placeholder for the global economic data
 economic_data = {
@@ -15,6 +16,9 @@ economic_data = {
 }
 
 def simulate_economy(policies, periods=10):
+      # Create a new Simulation object for this run
+    simulation = Simulation.objects.create(policies=policies)  # Store simulation policies
+    
     characters = create_characters(5)
     total_debt = economic_data["total_debt"]
     gdp = economic_data["gdp"]
@@ -103,6 +107,20 @@ def simulate_economy(policies, periods=10):
             "debt": character.debt,
             "happiness": character.happiness 
         } for character in characters])
+        
+        ### create character objects  and storing in Models
+        
+        for character_data in characters:
+            character = Character(
+            period = period+1,
+            name=character_data.name,
+            income=character_data.income,
+            savings=character_data.savings,
+            debt=character_data.debt,
+            happiness=character_data.happiness,
+            simulation=simulation  # Link character to the simulation
+            )
+            character.save()
 
     character_data = [{'name': character.name, 'income': character.income, 'savings': character.savings, 'debt': character.debt, 'happiness': character.happiness} for character in characters]
     return character_data, gdp_list, inflation_list, interest_list, unemployment_list, total_debt_list, debt_to_gdp_ratio_list, savings_rate_list, real_wages_list, inflation_adjusted_savings_list, characters_emotions, events
